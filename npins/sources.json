@@ -1,0 +1,55 @@
+{
+  "pins": {
+    "nilla": {
+      "type": "GitRelease",
+      "repository": {
+        "type": "GitHub",
+        "owner": "nilla-nix",
+        "repo": "nilla"
+      },
+      "pre_releases": true,
+      "version_upper_bound": null,
+      "release_prefix": null,
+      "submodules": false,
+      "version": "v0.0.0-alpha.8",
+      "revision": "7bfa979f35bade61dfa9a13cd265d2a0eb4aea13",
+      "url": "https://api.github.com/repos/nilla-nix/nilla/tarball/v0.0.0-alpha.8",
+      "hash": "0qildn3qciz4w4fdwi2whqq2l2qhjj9zxdfznnayh1m5cg5db251"
+    },
+    "nixpkgs": {
+      "type": "Channel",
+      "name": "nixpkgs-unstable",
+      "url": "https://releases.nixos.org/nixpkgs/nixpkgs-25.05pre796313.b3582c75c7f2/nixexprs.tar.xz",
+      "hash": "1hy9mx89v6vcb2jwqa1dfpqnalc2pak27r7d82v3w6j5fhbbh34j"
+    },
+    "poco": {
+      "type": "GitRelease",
+      "repository": {
+        "type": "GitHub",
+        "owner": "pocoproject",
+        "repo": "poco"
+      },
+      "pre_releases": false,
+      "version_upper_bound": null,
+      "release_prefix": "poco-",
+      "submodules": false,
+      "version": "poco-1.14.2-release",
+      "revision": "6911178c17bdc0a9f7b016236957f01c0548f572",
+      "url": "https://api.github.com/repos/pocoproject/poco/tarball/poco-1.14.2-release",
+      "hash": "0pj9kgfz4aybqxnn2yxgnpgn01jzwakybkc4m3lnf7f0ny94914j"
+    },
+    "zstd": {
+      "type": "Git",
+      "repository": {
+        "type": "Git",
+        "url": "https://android.googlesource.com/platform/external/zstd/"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "415469b3387190483d00ed838165d022d86cb899",
+      "url": null,
+      "hash": "18hjn5mvg7pvh3hysi04yp5kcbk4m91bvwwaa9xbig4d7y7zphp0"
+    }
+  },
+  "version": 5
+}
