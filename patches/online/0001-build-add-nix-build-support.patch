@@ -1,0 +1,40 @@
+From 6351c36d8d5a8f718134d2a131b36070b2587bc7 Mon Sep 17 00:00:00 2001
+From: Skyler Grey <skyler.grey@collabora.com>
+Date: Fri, 9 May 2025 09:56:50 +0000
+Subject: [PATCH] build: add nix build support
+
+I do not recommend merging this commit
+---
+ coolwsd-systemplate-setup | 11 ++++++++---
+ 1 file changed, 8 insertions(+), 3 deletions(-)
+
+diff --git a/coolwsd-systemplate-setup b/coolwsd-systemplate-setup
+index 8d60157d23..f4b9fc26bb 100755
+--- a/coolwsd-systemplate-setup
++++ b/coolwsd-systemplate-setup
+@@ -20,9 +20,9 @@ mkdir -p $CHROOT || exit 1
+ # while INSTDIR is the physical one. Both will most likely be the same,
+ # except on systems that have symlinks in the path. We must create
+ # both paths (if they are different) inside the jail, hence we need both.
+-CHROOT=`cd $CHROOT && /bin/pwd`
+-INSTDIR_LOGICAL=`cd $INSTDIR && /bin/pwd -L`
+-INSTDIR=`cd $INSTDIR && /bin/pwd -P`
++CHROOT=`cd $CHROOT && pwd`
++INSTDIR_LOGICAL=`cd $INSTDIR && pwd -L`
++INSTDIR=`cd $INSTDIR && pwd -P`
+ 
+ if [ ! `uname -s` = "FreeBSD" ]; then
+     CP=cp
+@@ -157,4 +157,9 @@ if test "z$ENABLE_DEBUG" != "z" -a "z$HOME" != "z"; then
+     test -d $HOME/.fonts && ${CP} -r -p -L $HOME/.fonts $CHROOT/$HOME
+ fi
+ 
++if test -d /nix; then
++    mkdir -p $CHROOT/nix
++    sudo mount --bind /nix $CHROOT/nix
++fi
++
+ exit 0
+-- 
+2.49.0
+

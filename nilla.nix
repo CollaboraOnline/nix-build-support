@@ -40,12 +40,6 @@ in nilla.create ({ config }: {
 
     lib.constants.undefined = config.lib.modules.when false {};
 
-    # TODO: it might be worth moving the autogen stuff in here so that rather than doing `./autogen.sh $(envsubst ../autogen.args)` we do something like `./autogen.sh $AUTOGEN_ARGS`
-    # that would allow us to drop the envsubst dependency and weird env variables, nicely share the autogen args along with the configs, and probably not be largely more convoluted
-    # plus we can probably commit this *somewhere* even if it's only Minion3665/collabora--nix-build-support or somesuch
-    # the other thing we could do is generate autogen.input with a shell script run in direnv...
-    # ...that would have an extra step (`$ generate-autogen-input` or equivalent) but it would be automatically handled and make building more seamless...
-
     shells.core = {
       systems = [ "x86_64-linux" ];
 
@@ -60,10 +54,58 @@ in nilla.create ({ config }: {
             libreoffice-collabora
           ];
 
+          AUTOGEN_FLAGS = builtins.concatStringsSep " " [
+            "--enable-dbgutil"
+            "--without-doxygen"
+            "--with-external-tar=../../core-tarballs"
+            "--with-parallelism=6"
+            "--without-buildconfig-recorded"
+            "--with-boost=${boost.dev}"
+            "--with-boost-libdir=${boost}/lib"
+            "--with-beanshell-jar=${bsh}"
+            "--disable-report-builder"
+            "--disable-online-update"
+            "--enable-python=system"
+            "--enable-dbus"
+            "--enable-epm"
+            "--without-junit"
+            "--without-export-validation"
+            "--enable-build-opensymbol"
+            "--disable-odk"
+            "--disable-firebird-sdbc"
+            "--with-fonts"
+            "--without-doxygen"
+            "--with-system-beanshell"
+            "--with-system-cairo"
+            "--with-system-coinmp"
+            "--with-system-headers"
+            "--with-system-libabw"
+            "--with-system-libepubgen"
+            "--with-system-libetonyek"
+            "--with-system-liblangtag"
+            "--with-system-lpsolve"
+            "--with-system-mdds"
+            "--with-system-openldap"
+            "--with-system-openssl"
+            "--with-system-postgresql"
+            "--with-system-xmlsec"
+            "--without-system-altlinuxhyph"
+            "--without-system-frozen"
+            "--without-system-libfreehand"
+            "--without-system-libmspub"
+            "--without-system-libnumbertext"
+            "--without-system-libpagemaker"
+            "--without-system-libstaroffice"
+            "--without-system-libqxp"
+            "--without-system-dragonbox"
+            "--without-system-libfixmath"
+            "--without-system-hsqldb"
+            "--without-system-zxing"
+            "--without-system-zxcvbn"
+            "--without-system-rhino"
+          ];
+
           CCACHE_COMPRESS = "1";
-          BOOST_DEV_PATH = boost.dev;
-          BOOST_LIB_PATH = "${boost}/lib";
-          BEANSHELL_JAR_PATH = bsh;
           TMPDIR = "/tmp";
         };
     };
@@ -177,7 +219,7 @@ in nilla.create ({ config }: {
       systems = [ "x86_64-linux" ];
 
       # Define our shell environment.
-      shell = { lib, clangStdenv, mkShell, androidenv, libreoffice-collabora, envsubst, ccache, ... }: let
+      shell = { lib, clangStdenv, mkShell, androidenv, libreoffice-collabora, ccache, ... }: let
         androidSdk = (mkAndroidSdk {
           inherit androidenv;
           ndkVersion = coreNdkVersion;
@@ -193,7 +235,6 @@ in nilla.create ({ config }: {
           # This is the closest I can reasonably get to a "normal" setup where you add your ndk bin directory to your path before your regular cc ... but I think it's enough
         } {
           packages = [
-            envsubst
             ccache
           ];
 
@@ -201,10 +242,18 @@ in nilla.create ({ config }: {
             libreoffice-collabora
           ];
 
+          AUTOGEN_FLAGS = builtins.concatStringsSep " " [
+            "--enable-dbgutil"
+            "--with-external-tar=../../core-tarballs"
+            "--with-parallelism=6"
+            "--with-android-ndk=${ndkPath}"
+            "--with-android-sdk=${sdkPath}"
+            "--enable-sal-log"
+            "--with-distro=CPAndroidAarch64"
+          ];
+
           CCACHE_COMPRESS = "1";
           CCACHE_CPP2 = "1";
-          ANDROID_SDK_PATH = sdkPath;
-          ANDROID_NDK_PATH = ndkPath;
           TMPDIR = "/tmp";
 
           shellHook = ''
@@ -233,6 +282,16 @@ in nilla.create ({ config }: {
 
           inputsFrom = [
             collabora-online
+          ];
+
+          SYSTEMPLATE_PATCH = ./patches/online/0001-build-add-nix-build-support.patch;
+
+          CONFIGURE_FLAGS = builtins.concatStringsSep " " [
+            "--enable-silent-rules"
+            "--with-lokit-path=../core/include" # Relative paths are OK here, as they are realpathed by the script
+            "--with-lo-path=../core/instdir" # Relative paths are OK here, as they are realpathed by the script
+            "--enable-debug"
+            "--enable-cypress"
           ];
 
           CCACHE_COMPRESS = "1";
@@ -281,7 +340,7 @@ in nilla.create ({ config }: {
 
           CONFIGURE_FLAGS = builtins.concatStringsSep " " [
             "--enable-androidapp"
-            "--with-lo-builddir=/home/minion/Code/Collabora/android/core" # TODO: no way to fix this without some processing of this env var, I think...
+            "--with-lo-builddir=../core" # Relative paths are OK here, as they are realpathed by the script
             "--with-poco-includes=${config.packages.android-poco.result.x86_64-linux}/include" # TODO: should I be using pkgs.system or somesuch here(?)
             "--with-poco-libs=${config.packages.android-poco.result.x86_64-linux}/${abi}/lib"
             "--with-zstd-includes=${config.packages.android-zstd.result.x86_64-linux}/include"

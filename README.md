@@ -1,3 +1,5 @@
+# General usage
+
 The following I know to work
 - building Core and Collabora Online for Android on NixOS
 - building Core and Collabora Online on NixOS
@@ -41,11 +43,62 @@ to your store if you use it to enter a shell, leading to a very long
 delay*. LibreOffice translations/etc. are gigabytes big in a full clone.
 You do not want that.
 
----
+# Copy/pasteable commands
 
-The .envrc.template therefore assumes that you have done this, and
-further that the folder you have is called 'nilla'. To do that, you'll
-need to clone this repository with the following
+## To build core
+
+```
+nilla shell core --project /path/to/nilla
+git clone https://gerrit.libreoffice.org/core
+cd core
+git checkout distro/collabora/co-25.04
+./autogen.sh $AUTOGEN_FLAGS
+make
+```
+
+## To build online
+
+```
+nilla shell online --project /path/to/nilla
+git clone https://github.com/CollaboraOnline/online
+cd online
+git apply "$SYSTEMPLATE_PATCH"
+./autogen.sh
+./configure $CONFIGURE_FLAGS
+make run
+```
+
+## To build android core
+
+```
+nilla shell android-core --project /path/to/nilla
+git clone https://gerrit.libreoffice.org/core
+cd core
+git checkout distro/collabora/co-25.04
+./autogen.sh $AUTOGEN_FLAGS
+make
+```
+
+## To build online
+
+
+```
+nilla shell android-online --project /path/to/nilla
+git clone https://github.com/CollaboraOnline/online
+cd online
+./autogen.sh
+./configure $CONFIGURE_FLAGS
+make
+android-studio
+# Follow the prompts in Android studio to build. If you're asked whether to use project NDK or Android Studio NDK choose Android Studio NDK
+```
+
+# Usage with direnv
+
+The .envrc.template assumes that you have kept this directory alongside
+your rather than cloning libreoffice into it, and further that the
+folder you have is called 'nilla'. To do that, you'll need to clone this
+repository with the following
 
     git clone git@github.com:Minion3665/collabora--nix-build-support nilla
 
