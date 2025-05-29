@@ -1,0 +1,10 @@
+diff --git a/pidcat.py b/pidcat.py
+--- a/pidcat.py
++++ b/pidcat.py
+@@ -248,4 +248,4 @@ def parse_death(tag, message):
+     message = matcher.sub(replace, message)
+ 
+   linebuf += indent_wrap(message)
+-  print(linebuf.encode('utf-8'))
++  print(linebuf)
+
