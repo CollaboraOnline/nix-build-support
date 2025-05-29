@@ -79,6 +79,7 @@ nilla.create (
               lib,
               mkShell,
               ccache,
+              clang-tools,
               libreoffice-collabora,
               boost,
               bsh,
@@ -87,6 +88,7 @@ nilla.create (
             mkShell {
               packages = [
                 ccache
+                clang-tools
               ];
 
               inputsFrom = [
@@ -282,6 +284,7 @@ nilla.create (
             {
               lib,
               clangStdenv,
+              clang-tools,
               mkShell,
               androidenv,
               libreoffice-collabora,
@@ -309,6 +312,7 @@ nilla.create (
               {
                 packages = [
                   ccache
+                  clang-tools
                 ];
 
                 inputsFrom = [
