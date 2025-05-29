@@ -22,6 +22,19 @@
       "url": "https://releases.nixos.org/nixpkgs/nixpkgs-25.11pre839900.cab778239e70/nixexprs.tar.xz",
       "hash": "sha256-OkdcTURtC+o0elH57msXb5k9K5/kVw9t5YLwT/cixP8="
     },
+    "pidcat": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "JakeWharton",
+        "repo": "pidcat"
+      },
+      "branch": "master",
+      "submodules": false,
+      "revision": "61cd1ee1beabfa14eb5fbe21eb90c192d96aebc5",
+      "url": "https://github.com/JakeWharton/pidcat/archive/61cd1ee1beabfa14eb5fbe21eb90c192d96aebc5.tar.gz",
+      "hash": "1glq58hm9glnsf144mv13kh10386g6vpm9ywvavdbwvi316k06vv"
+    },
     "poco": {
       "type": "GitRelease",
       "repository": {
