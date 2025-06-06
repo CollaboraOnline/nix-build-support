@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2025 the Collabora Online contributors
+
+SPDX-License-Identifier: MIT
+-->
+
 # Collabora Online nix-build-support
 
 This repository contains community-supported nix build support for

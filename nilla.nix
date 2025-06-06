@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2025 the Collabora Online contributors
+#
+# SPDX-License-Identifier: MIT
+
 let
   pins = import ./npins;
 
@@ -39,6 +43,17 @@ in nilla.create ({ config }: {
     }) pins;
 
     lib.constants.undefined = config.lib.modules.when false {};
+
+    shells.default = {      
+      systems = [ "x86_64-linux" ];
+
+      shell = { mkShell, reuse, ... }:
+        mkShell {
+          packages = [
+            reuse
+          ];
+        };
+    };
 
     shells.core = {
       systems = [ "x86_64-linux" ];
