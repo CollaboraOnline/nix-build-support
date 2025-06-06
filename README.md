@@ -43,6 +43,11 @@ index 8d60157d23..f4b9fc26bb 100755
  exit 0
 ```
 
+You likely want to use this with [Nilla's cli](https://github.com/nilla-nix/cli)
+as, while you can manually use the shells, it will provide a much more
+sugared experience. You can follow [Nilla's quickstart guide](https://nilla.dev/guides/quickstart/)
+to install it
+
 You will probably want to keep this directory *alongside* your nix
 rather than cloning into it. That's because nilla *will copy everything
 to your store if you use it to enter a shell, leading to a very long
@@ -50,6 +55,9 @@ delay*. LibreOffice translations/etc. are gigabytes big in a full clone.
 You do not want that.
 
 # Copy/pasteable commands
+
+(You will need to [install the Nilla cli](https://nilla.dev/guides/quickstart/)
+to follow these instructions)
 
 ## To build core
 
