@@ -1,3 +1,9 @@
+# Collabora Online nix-build-support
+
+This repository contains community-supported nix build support for
+developing Collabora Online. We do not support, and recommend you do not
+use, this in a production environment
+
 # General usage
 
 The following I know to work
