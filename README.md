@@ -43,7 +43,7 @@ index 8d60157d23..f4b9fc26bb 100755
  exit 0
 ```
 
-you will probably want to keep this directory *alongside* your nix
+You will probably want to keep this directory *alongside* your nix
 rather than cloning into it. That's because nilla *will copy everything
 to your store if you use it to enter a shell, leading to a very long
 delay*. LibreOffice translations/etc. are gigabytes big in a full clone.
@@ -74,7 +74,7 @@ git apply "$SYSTEMPLATE_PATCH"
 make run
 ```
 
-## To build android core
+## To build Android core
 
 ```
 nilla shell android-core --project /path/to/nilla
@@ -85,7 +85,7 @@ git checkout distro/collabora/co-25.04
 make
 ```
 
-## To build online
+## To build Android online
 
 
 ```
