@@ -114,7 +114,7 @@ your rather than cloning libreoffice into it, and further that the
 folder you have is called 'nilla'. To do that, you'll need to clone this
 repository with the following
 
-    git clone git@github.com:Minion3665/collabora--nix-build-support nilla
+    git clone git@github.com:CollaboraOnline/nix-build-support nilla
 
 The .envrc.template also assumes you have some nested directory
 structure, such as
