@@ -97,6 +97,14 @@ git clone https://github.com/CollaboraOnline/nix-build-support
 
 [NIXSUPPORT]: https://github.com/CollaboraOnline/online/pull/12490
 
+> [!NOTE]
+> You may see instructions for other distributions that mention daily-build core
+> archives as an alternative to building core yourself
+>
+> You can't use daily-built LibreOffice core archives on NixOS as they
+> will run into missing dynamic libraries. To avoid this, build core on NixOS
+> yourself with the shells from this repository
+
 <details>
   <summary>With the Nilla cli</summary>
 
