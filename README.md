@@ -78,7 +78,7 @@ git clone https://github.com/CollaboraOnline/nix-build-support
   <summary>With plain Nix/Lix</summary>
 
   ```bash
-  nix-shell -f /path/to/CollaboraOnline/nix-build-support/nilla.nix -A shells.core.result.x86_64-linux
+  nix-shell /path/to/CollaboraOnline/nix-build-support/nilla.nix -A shells.core.result.x86_64-linux
   git clone https://gerrit.libreoffice.org/core
   cd core
   git checkout distro/collabora/co-25.04
@@ -113,7 +113,7 @@ git clone https://github.com/CollaboraOnline/nix-build-support
   <summary>With plain Nix/Lix</summary>
 
   ```bash
-  nix-shell -f /path/to/CollaboraOnline/nix-build-support/nilla.nix -A shells.online.result.x86_64-linux
+  nix-shell /path/to/CollaboraOnline/nix-build-support/nilla.nix -A shells.online.result.x86_64-linux
   git clone https://github.com/CollaboraOnline/online
   cd online
   ./autogen.sh
@@ -140,7 +140,7 @@ git clone https://github.com/CollaboraOnline/nix-build-support
   <summary>With plain Nix/Lix</summary>
 
   ```bash
-  nix-shell -f /path/to/CollaboraOnline/nix-build-support/nilla.nix -A shells.android-core.result.x86_64-linux
+  nix-shell /path/to/CollaboraOnline/nix-build-support/nilla.nix -A shells.android-core.result.x86_64-linux
   git clone https://gerrit.libreoffice.org/core
   cd core
   git checkout distro/collabora/co-25.04
@@ -169,7 +169,7 @@ git clone https://github.com/CollaboraOnline/nix-build-support
   <summary>With plain Nix/Lix</summary>
 
   ```bash
-  nix-shell -f /path/to/CollaboraOnline/nix-build-support/nilla.nix -A shells.android-online.result.x86_64-linux
+  nix-shell /path/to/CollaboraOnline/nix-build-support/nilla.nix -A shells.android-online.result.x86_64-linux
   git clone https://github.com/CollaboraOnline/online
   cd online
   ./autogen.sh
