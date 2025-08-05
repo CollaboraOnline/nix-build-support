@@ -371,8 +371,6 @@ nilla.create (
 
               CONFIGURE_FLAGS = builtins.concatStringsSep " " [
                 "--enable-silent-rules"
-                "--with-lokit-path=../core/include" # Relative paths are OK here, as they are realpathed by the script
-                "--with-lo-path=../core/instdir" # Relative paths are OK here, as they are realpathed by the script
                 "--enable-debug"
                 "--enable-cypress"
               ];
@@ -440,7 +438,6 @@ nilla.create (
 
               CONFIGURE_FLAGS = builtins.concatStringsSep " " [
                 "--enable-androidapp"
-                "--with-lo-builddir=../core" # Relative paths are OK here, as they are realpathed by the script
                 "--with-poco-includes=${config.packages.android-poco.result.x86_64-linux}/include" # TODO: should I be using pkgs.system or somesuch here(?)
                 "--with-poco-libs=${config.packages.android-poco.result.x86_64-linux}/${abi}/lib"
                 "--with-zstd-includes=${config.packages.android-zstd.result.x86_64-linux}/include"

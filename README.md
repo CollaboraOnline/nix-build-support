@@ -105,7 +105,7 @@ git clone https://github.com/CollaboraOnline/nix-build-support
   git clone https://github.com/CollaboraOnline/online
   cd online
   ./autogen.sh
-  ./configure $CONFIGURE_FLAGS
+  ./configure $CONFIGURE_FLAGS --with-lokit-path=/path/to/core/include --with-lo-path=/path/to/core/instdir
   make run
   ```
 </details>
@@ -117,7 +117,7 @@ git clone https://github.com/CollaboraOnline/nix-build-support
   git clone https://github.com/CollaboraOnline/online
   cd online
   ./autogen.sh
-  ./configure $CONFIGURE_FLAGS
+  ./configure $CONFIGURE_FLAGS --with-lokit-path=/path/to/core/include --with-lo-path=/path/to/core/instdir
   make run
   ```
 </details>
@@ -159,7 +159,7 @@ git clone https://github.com/CollaboraOnline/nix-build-support
   git clone https://github.com/CollaboraOnline/online
   cd online
   ./autogen.sh
-  ./configure $CONFIGURE_FLAGS
+  ./configure $CONFIGURE_FLAGS --with-lo-builddir=/path/to/core
   make
   android-studio
   # Follow the prompts in Android studio to build. If you're asked whether to use project NDK or Android Studio NDK choose Android Studio NDK
@@ -173,7 +173,7 @@ git clone https://github.com/CollaboraOnline/nix-build-support
   git clone https://github.com/CollaboraOnline/online
   cd online
   ./autogen.sh
-  ./configure $CONFIGURE_FLAGS
+  ./configure $CONFIGURE_FLAGS --with-lo-builddir=/path/to/core
   make
   android-studio
   # Follow the prompts in Android studio to build. If you're asked whether to use project NDK or Android Studio NDK choose Android Studio NDK
