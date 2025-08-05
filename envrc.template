@@ -1,1 +1,1 @@
-use nix ../../nilla/nilla.nix -A shells.<foo>.result.x86_64-linux
+use nix ../../nix-build-support/nilla.nix -A shells.<foo>.result.x86_64-linux
