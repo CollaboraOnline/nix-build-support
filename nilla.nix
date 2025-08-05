@@ -98,7 +98,6 @@ nilla.create (
               AUTOGEN_FLAGS = builtins.concatStringsSep " " [
                 "--enable-dbgutil"
                 "--without-doxygen"
-                "--with-external-tar=../../core-tarballs"
                 "--with-parallelism=6"
                 "--without-buildconfig-recorded"
                 "--with-boost=${boost.dev}"
@@ -321,7 +320,6 @@ nilla.create (
 
                 AUTOGEN_FLAGS = builtins.concatStringsSep " " [
                   "--enable-dbgutil"
-                  "--with-external-tar=../../core-tarballs"
                   "--with-parallelism=6"
                   "--with-android-ndk=${ndkPath}"
                   "--with-android-sdk=${sdkPath}"
