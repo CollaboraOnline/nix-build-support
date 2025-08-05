@@ -15,39 +15,7 @@ use, this in a production environment
 The following I know to work
 - building Core and Collabora Online for Android on NixOS
 - building Core and Collabora Online on NixOS
-- running Core and Collabora Online on NixOS, provided you also use this
-  patch on Collabora Online sources (without it, you will fail to find
-  fonts/etc.)
-
-```diff
-diff --git a/coolwsd-systemplate-setup b/coolwsd-systemplate-setup
-index 8d60157d23..f4b9fc26bb 100755
---- a/coolwsd-systemplate-setup
-+++ b/coolwsd-systemplate-setup
-@@ -20,9 +20,9 @@
- # while INSTDIR is the physical one. Both will most likely be the same,
- # except on systems that have symlinks in the path. We must create
- # both paths (if they are different) inside the jail, hence we need both.
--CHROOT=`cd $CHROOT && /bin/pwd`
--INSTDIR_LOGICAL=`cd $INSTDIR && /bin/pwd -L`
--INSTDIR=`cd $INSTDIR && /bin/pwd -P`
-+CHROOT=`cd $CHROOT && pwd`
-+INSTDIR_LOGICAL=`cd $INSTDIR && pwd -L`
-+INSTDIR=`cd $INSTDIR && pwd -P`
-
- if [ ! `uname -s` = "FreeBSD" ]; then
-     CP=cp
-@@ -157,4 +157,9 @@
-     test -d $HOME/.fonts && ${CP} -r -p -L $HOME/.fonts $CHROOT/$HOME
- fi
-
-+if test -d /nix; then
-+    mkdir -p $CHROOT/nix
-+    sudo mount --bind /nix $CHROOT/nix
-+fi
-+
- exit 0
-```
+- running Core and Collabora Online on NixOS
 
 You likely want to use this with [Nilla's cli](https://github.com/nilla-nix/cli)
 as, while you can manually use the shells, it will provide a much more
@@ -100,11 +68,18 @@ make
 
 ## To build online
 
+> [!IMPORTANT]
+> Collabora Online has [recently improved its support for NixOS][NIXSUPPORT]
+>
+> If you are running on an older clone of Collabora Online, you will need to either
+> cherry-pick that commit or run `git apply "$SYSTEMPLATE_PATCH"` in your clone
+
+[NIXSUPPORT]: https://github.com/CollaboraOnline/online/pull/12490
+
 ```
 nilla shell online --project /path/to/nilla
 git clone https://github.com/CollaboraOnline/online
 cd online
-git apply "$SYSTEMPLATE_PATCH"
 ./autogen.sh
 ./configure $CONFIGURE_FLAGS
 make run
