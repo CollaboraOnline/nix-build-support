@@ -54,7 +54,7 @@ nilla.create (
         inputs = builtins.mapAttrs (name: value: {
           src = value;
           settings = settings.${name} or config.lib.constants.undefined;
-        }) pins;
+        }) (config.lib.attrs.filter (name: _: name != "__functor") pins);
 
         lib.constants.undefined = config.lib.modules.when false { };
 
