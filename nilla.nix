@@ -391,13 +391,17 @@ nilla.create (
               mkShell,
               ccache,
               collabora-online,
+              cypress,
               typescript-language-server,
+              xorg,
               ...
             }:
             mkShell {
               packages = [
                 ccache
                 typescript-language-server
+                cypress
+                xorg.xhost
               ];
 
               inputsFrom = [
@@ -411,6 +415,9 @@ nilla.create (
                 "--enable-debug"
                 "--enable-cypress"
               ];
+
+              CYPRESS_RUN_BINARY = "${cypress}/bin/Cypress";
+              CYPRESS_SKIP_VERIFY = "1";
 
               CCACHE_COMPRESS = "1";
               TMPDIR = "/tmp";
