@@ -15,7 +15,7 @@ let
   mkFunctor =
     fn:
     let
-      e = (builtins.tryEval (fn { }));
+      e = builtins.tryEval (fn { });
     in
     (if e.success then e.value else { error = fn { }; }) // { __functor = _self: fn; };
 
@@ -28,7 +28,6 @@ let
 
   # https://github.com/NixOS/nixpkgs/blob/0258808f5744ca980b9a1f24fe0b1e6f0fecee9c/lib/strings.nix#L269
   stringAsChars = f: s: concatStrings (map f (stringToCharacters s));
-  concatMapStrings = f: list: concatStrings (map f list);
   concatStrings = builtins.concatStringsSep "";
 
   # If the environment variable NPINS_OVERRIDE_${name} is set, then use
@@ -71,7 +70,15 @@ let
           }
         else
           {
-            fetchTarball = pkgs.fetchzip;
+            fetchTarball =
+              {
+                url,
+                sha256,
+              }:
+              pkgs.fetchzip {
+                inherit url sha256;
+                extension = "tar";
+              };
             inherit (pkgs) fetchurl;
             fetchGit =
               {
@@ -100,20 +107,25 @@ let
           mkChannelSource fetchers spec
         else if spec.type == "Tarball" then
           mkTarballSource fetchers spec
+        else if spec.type == "Container" then
+          mkContainerSource pkgs spec
         else
           builtins.throw "Unknown source type ${spec.type}";
     in
     spec // { outPath = mayOverride name path; };
 
   mkGitSource =
-    { fetchTarball, fetchGit, ... }:
+    {
+      fetchTarball,
+      fetchGit,
+      ...
+    }:
     {
       repository,
       revision,
       url ? null,
       submodules,
       hash,
-      branch ? null,
       ...
     }:
     assert repository ? type;
@@ -156,7 +168,11 @@ let
 
   mkPyPiSource =
     { fetchurl, ... }:
-    { url, hash, ... }:
+    {
+      url,
+      hash,
+      ...
+    }:
     fetchurl {
       inherit url;
       sha256 = hash;
@@ -164,7 +180,11 @@ let
 
   mkChannelSource =
     { fetchTarball, ... }:
-    { url, hash, ... }:
+    {
+      url,
+      hash,
+      ...
+    }:
     fetchTarball {
       inherit url;
       sha256 = hash;
@@ -182,6 +202,23 @@ let
       url = locked_url;
       sha256 = hash;
     };
+
+  mkContainerSource =
+    pkgs:
+    {
+      image_name,
+      image_tag,
+      image_digest,
+      ...
+    }:
+    if pkgs == null then
+      builtins.throw "container sources require passing in a Nixpkgs value: https://github.com/andir/npins/blob/master/README.md#using-the-nixpkgs-fetchers"
+    else
+      pkgs.dockerTools.pullImage {
+        imageName = image_name;
+        imageDigest = image_digest;
+        finalImageTag = image_tag;
+      };
 in
 mkFunctor (
   {
@@ -203,7 +240,7 @@ mkFunctor (
         throw "Unsupported input type ${builtins.typeOf input}, must be a path or an attrset";
     version = data.version;
   in
-  if version == 6 then
+  if version == 7 then
     builtins.mapAttrs (name: spec: mkFunctor (mkSource name spec)) data.pins
   else
     throw "Unsupported format version ${toString version} in sources.json. Try running `npins upgrade`"

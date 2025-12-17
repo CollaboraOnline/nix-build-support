@@ -11,17 +11,16 @@
       "version_upper_bound": null,
       "release_prefix": null,
       "submodules": false,
-      "version": "v0.0.0-alpha.14",
-      "revision": "2e98ae315a592ad6b6de44670514c048dcc88dc7",
-      "url": "https://api.github.com/repos/nilla-nix/nilla/tarball/refs/tags/v0.0.0-alpha.14",
-      "hash": "sha256-15lwhWcMonJH6UholMMHDc+p2BoSpGA4AYGrsXQA9Do="
+      "version": "v0.0.0-alpha.16",
+      "revision": "6d814dafa6f397ac2087333e5515c617faccba6f",
+      "url": "https://api.github.com/repos/nilla-nix/nilla/tarball/refs/tags/v0.0.0-alpha.16",
+      "hash": "sha256-A4zg3po1tyfh1if+LIllKtUGoWLFSwJSztvH2MG22qU="
     },
     "nixpkgs": {
       "type": "Channel",
       "name": "nixpkgs-unstable",
-      "url": "https://releases.nixos.org/nixpkgs/nixpkgs-25.05pre796313.b3582c75c7f2/nixexprs.tar.xz",
-      "hash": "sha256-kgy4FnRFGj62QO3kI6a6glFl8XUtKMylWGybnVCvycM=",
-      "frozen": true
+      "url": "https://releases.nixos.org/nixpkgs/nixpkgs-26.05pre913028.af84f9d270d4/nixexprs.tar.xz",
+      "hash": "sha256-BIvm74Z8calUQ5ISocpbmrlBqfNS/XRqygeskYuKwXg="
     },
     "pidcat": {
       "type": "Git",
@@ -34,7 +33,7 @@
       "submodules": false,
       "revision": "61cd1ee1beabfa14eb5fbe21eb90c192d96aebc5",
       "url": "https://github.com/JakeWharton/pidcat/archive/61cd1ee1beabfa14eb5fbe21eb90c192d96aebc5.tar.gz",
-      "hash": "1glq58hm9glnsf144mv13kh10386g6vpm9ywvavdbwvi316k06vv"
+      "hash": "sha256-exswTRhx89W22tynerd5Bg0Q4BxhV0KC05a+VCEqmL4="
     },
     "poco": {
       "type": "GitRelease",
@@ -65,5 +64,5 @@
       "hash": "sha256-4ML7jz+NvLh6UorzvUKqZC42y/UERO3hgPuet2uxEqI="
     }
   },
-  "version": 6
+  "version": 7
 }
