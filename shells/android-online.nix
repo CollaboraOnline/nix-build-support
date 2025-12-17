@@ -15,7 +15,6 @@ in
   jdk17,
   libgcc,
   jdt-language-server,
-  chromium,
   ...
 }:
 let
@@ -36,7 +35,6 @@ mkShell {
     android-studio
     jdk17
     jdt-language-server
-    chromium
     config.packages.pidcat.result.x86_64-linux # TODO: again, pkgs.system/etc.
   ];
 
