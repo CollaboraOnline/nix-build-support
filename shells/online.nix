@@ -14,6 +14,7 @@
   collabora-online,
   cypress,
   typescript-language-server,
+  vscode-langservers-extracted,
   xorg,
   bear,
   chromium,
@@ -27,6 +28,7 @@ mkShell {
     xorg.xhost
     bear
     chromium
+    vscode-langservers-extracted
   ];
 
   inputsFrom = [
