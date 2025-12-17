@@ -15,6 +15,7 @@
   cypress,
   typescript-language-server,
   xorg,
+  bear,
   ...
 }:
 mkShell {
@@ -23,6 +24,7 @@ mkShell {
     typescript-language-server
     cypress
     xorg.xhost
+    bear
   ];
 
   inputsFrom = [
