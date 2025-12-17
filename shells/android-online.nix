@@ -22,7 +22,7 @@ let
   androidSdk = config.packages.android-sdk.result.x86_64-linux.override {
     inherit ndkVersion;
     cmakeVersion = "3.22.1";
-    buildToolsVersion = "30.0.3";
+    buildToolsVersion = "35.0.0";
     platformToolsVersion = "36.0.2";
     includeSources = true;
   };
