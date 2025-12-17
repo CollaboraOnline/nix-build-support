@@ -5,5 +5,5 @@
 {
   minPlatformVersion = "35"; # https://endoflife.date/android
   abi = "arm64-v8a";  
-  ndkVersion = "27.2.12479018"; # just the default NDK version ... some things override
+  ndkVersion = "28.2.13676358"; # just the default NDK version ... some things override
 }
