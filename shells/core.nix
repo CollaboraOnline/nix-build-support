@@ -11,12 +11,14 @@
   libreoffice-collabora,
   boost,
   bsh,
+  fast-float,
   ...
 }:
 mkShell {
   packages = [
     ccache
     clang-tools
+    fast-float
   ];
 
   inputsFrom = [
