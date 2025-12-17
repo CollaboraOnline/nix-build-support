@@ -32,7 +32,9 @@ in
 mkShell {
   packages = [
     androidSdk.platform-tools
-    android-studio
+    (android-studio.overrideAttrs {
+      preferLocalBuild = true; # android-studio is downloading/symlinking things - and quite a lot of things - so in my testing it takes *way* longer to do this remotely...
+    })
     jdk17
     jdt-language-server
     config.packages.pidcat.result.x86_64-linux # TODO: again, pkgs.system/etc.
