@@ -15,6 +15,7 @@ in
   jdk17,
   libgcc,
   jdt-language-server,
+  kotlin,
   ...
 }:
 let
@@ -38,6 +39,7 @@ mkShell {
     jdk17
     jdt-language-server
     config.packages.pidcat.result.x86_64-linux # TODO: again, pkgs.system/etc.
+    kotlin
   ];
 
   inputsFrom = [
