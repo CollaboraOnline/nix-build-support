@@ -3,7 +3,7 @@
 # SPDX-License-Identifier: MIT
 
 {
-  minPlatformVersion = "33"; # https://endoflife.date/android
+  minPlatformVersion = "35"; # https://endoflife.date/android
   abi = "arm64-v8a";  
   ndkVersion = "27.2.12479018"; # just the default NDK version ... some things override
 }
