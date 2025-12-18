@@ -19,10 +19,10 @@ in
   ...
 }:
 let
+  buildToolsVersion = "35.0.0";
   androidSdk = config.packages.android-sdk.result.x86_64-linux.override {
-    inherit ndkVersion;
+    inherit ndkVersion buildToolsVersion;
     cmakeVersion = "3.22.1";
-    buildToolsVersion = "35.0.0";
     platformToolsVersion = "36.0.2";
     includeSources = true;
   };
@@ -52,6 +52,7 @@ mkShell {
   STUDIO_GRADLE_JDK = "${jdk17}/lib/openjdk";
   ANDROID_HOME = sdkPath;
   ANDROID_NDK_ROOT = ndkPath;
+  GRADLE_OPTS = "-Dorg.gradle.project.android.aapt2FromMavenOverride=${sdkPath}/build-tools/${buildToolsVersion}/aapt2";
 
   CONFIGURE_FLAGS = builtins.concatStringsSep " " [
     "--enable-androidapp"
