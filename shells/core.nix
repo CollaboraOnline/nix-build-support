@@ -12,6 +12,7 @@
   boost,
   bsh,
   fast-float,
+  python3,
   ...
 }:
 mkShell {
@@ -19,6 +20,11 @@ mkShell {
     ccache
     clang-tools
     fast-float
+    (python3.withPackages (pyPkgs: [
+      pyPkgs.distutils
+      pyPkgs.lxml
+      pyPkgs.polib
+    ]))
   ];
 
   inputsFrom = [

@@ -23,7 +23,7 @@ let
     inherit ndkVersion;
     cmakeVersion = "3.22.1";
     buildToolsVersion = "30.0.3";
-    platformToolsVersion = "34.0.5";
+    platformToolsVersion = "36.0.2";
     includeSources = true;
   };
   sdkPath = "${androidSdk}/libexec/android-sdk";
