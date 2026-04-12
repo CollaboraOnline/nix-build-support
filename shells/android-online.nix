@@ -19,12 +19,13 @@ in
   ...
 }:
 let
-  buildToolsVersion = "35.0.0";
+  buildToolsVersion = "36.0.0";
   androidSdk = config.packages.android-sdk.result.x86_64-linux.override {
     inherit ndkVersion buildToolsVersion;
     cmakeVersion = "3.22.1";
     platformToolsVersion = "36.0.2";
     includeSources = true;
+    platformVersions = [ "35" "36" ];
   };
   sdkPath = "${androidSdk}/libexec/android-sdk";
   ndkPath = "${sdkPath}/ndk/${ndkVersion}";

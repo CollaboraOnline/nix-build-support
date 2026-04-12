@@ -10,7 +10,9 @@ in
 {
   lib,
   clangStdenv,
+  meson,
   mkShell,
+  ninja,
   ...
 }:
 let
@@ -29,6 +31,11 @@ mkShell.override
   {
     inputsFrom = [
       config.shells.core.result.x86_64-linux
+    ];
+
+    nativeBuildInputs = [
+      # meson
+      ninja
     ];
 
     AUTOGEN_FLAGS = builtins.concatStringsSep " " [

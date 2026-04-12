@@ -15,11 +15,12 @@ in
   platformToolsVersion ? "latest",
   abi ? variables.abi,
   minPlatformVersion ? variables.minPlatformVersion,
+  platformVersions ? [ "latest" ],
   ...
 }:
 let
-  androidPkgs = (androidenv.composeAndroidPackages {
-    inherit minPlatformVersion includeSources platformToolsVersion;
+  androidPkgs = androidenv.composeAndroidPackages {
+    inherit minPlatformVersion includeSources platformToolsVersion platformVersions;
     abiVersions = [ abi ];
     includeNDK = true;
     ndkVersions = [
@@ -31,7 +32,8 @@ let
     buildToolsVersions = [
       buildToolsVersion
     ];
-  });
-in androidPkgs.androidsdk.overrideAttrs (prev: {
+  };
+  androidsdk = androidPkgs.androidsdk;
+in androidsdk.overrideAttrs (prev: {
   passthru = (prev.passthru or {}) // androidPkgs;
 })

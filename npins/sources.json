@@ -46,10 +46,10 @@
       "version_upper_bound": null,
       "release_prefix": "poco-",
       "submodules": false,
-      "version": "poco-1.14.2-release",
-      "revision": "6911178c17bdc0a9f7b016236957f01c0548f572",
-      "url": "https://api.github.com/repos/pocoproject/poco/tarball/poco-1.14.2-release",
-      "hash": "sha256-koREkrfAHWfpqITN5afiXwZg37Wve2Ftx8sr8t2bSV4="
+      "version": "poco-1.15.1-release",
+      "revision": "a1aacbba1bda4301db01bb1a2c2ab80677756b90",
+      "url": "https://api.github.com/repos/pocoproject/poco/tarball/refs/tags/poco-1.15.1-release",
+      "hash": "sha256-JyjEs5aecKSdrNEaSs4Dzs3mAu2rhhBNAG93VLHdU3E="
     },
     "zstd": {
       "type": "Git",

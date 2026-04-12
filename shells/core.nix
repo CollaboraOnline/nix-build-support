@@ -12,6 +12,7 @@
   boost,
   bsh,
   fast-float,
+  ninja,
   python3,
   ...
 }:
@@ -20,6 +21,7 @@ mkShell {
     ccache
     clang-tools
     fast-float
+    ninja
     (python3.withPackages (pyPkgs: [
       pyPkgs.distutils
       pyPkgs.lxml
@@ -33,7 +35,6 @@ mkShell {
 
   AUTOGEN_FLAGS = builtins.concatStringsSep " " [
     "--enable-dbgutil"
-    "--without-doxygen"
     "--with-parallelism=6"
     "--without-buildconfig-recorded"
     "--with-boost=${boost.dev}"
@@ -47,11 +48,9 @@ mkShell {
     "--without-junit"
     "--without-export-validation"
     "--enable-build-opensymbol"
-    "--disable-odk"
     "--disable-firebird-sdbc"
     "--with-fonts"
     "--with-system-lpsolve"
-    "--without-doxygen"
   ];
 
   CCACHE_COMPRESS = "1";
