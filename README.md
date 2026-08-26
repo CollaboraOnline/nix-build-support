@@ -4,6 +4,11 @@ SPDX-FileCopyrightText: 2025 the Collabora Online contributors
 SPDX-License-Identifier: MIT
 -->
 
+# Archive notice
+
+> [!WARNING]
+> This repository is **no longer maintained** after Collabora Online's move to <https://gerrit.collaboraoffice.com>. Work is being done to create current shells (and instructions to use them) in <https://gerrit.collaboraoffice.com/plugins/gitiles/online/+/refs/heads/main/nix/>. You may still find these shells useful when building older versions of Collabora Online, **it is not guaranteed that they will work** and **no support will be provided**.
+
 # Collabora Online nix-build-support
 
 This repository contains community-supported nix build support for
